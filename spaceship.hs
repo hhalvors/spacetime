@@ -16,7 +16,7 @@ drawLine x = line [(x - lineLength, y - lineLength * slope), (x + lineLength, y 
 moveDotAndLine :: Float -> Picture
 moveDotAndLine time = pictures [translate x y $ color red $ circleSolid 5, drawLine x]
     where
-        x = time   -- x increases with time
+        x = (time * 10)   -- x increases with time
         y = hyperbola x  -- calculate y based on x
 
 -- Main function to create the window and animate the dot and line
