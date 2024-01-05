@@ -22,3 +22,15 @@ moveDotAndLine time = pictures [translate x y $ color red $ circleSolid 5, drawL
 -- Main function to create the window and animate the dot and line
 main :: IO ()
 main = animate (InWindow "Hyperbola Animation with Orthogonal Line" (600, 600) (10, 10)) white moveDotAndLine
+
+-- Function to create the line with a given slope
+lineWithSlope :: Float -> Picture
+lineWithSlope t = Line [(0, 0), (300, 300 * t)]
+
+-- Function to update the line's slope over time
+animateLine :: Float -> Picture
+animateLine t = lineWithSlope t
+
+-- Main function to run the animation
+mainNew :: IO ()
+mainNew = animate (InWindow "Line Animation" (600, 600) (10, 10)) white animateLine
