@@ -1,4 +1,4 @@
-\documentclass[tikz,border=10pt]{article}
+\documentclass[tikz,border=10pt,fleqn]{article}
 \title{Bell's spaceship paradox}
 \author{Hans Halvorson}
 \date{\today}
@@ -18,11 +18,20 @@
 
 \maketitle
 
-Consider the following sketch of the trajectories of the two
-spaceships. We assume that Alice (green) and Bob (blue) receive the
-instruction to accelerate at the same time in what was originally
-their common reference frame. The red vector is tangent to Bob's
-trajectory at the point $(\sqrt{2},1)$.
+We assume that Alice (green) and Bob (blue) receive the instruction to
+accelerate at the same time (in what was originally their common
+reference frame). Bob's trajectory is given by
+\[ b(t) \: = \: (\cosh (t),\sinh (t)) , \] and Alice's trajectory is given by
+\[ a(t) \: = \: (\cosh (t)+1,\sinh (t)) ,\] for
+$t\in\mathbb{R}^+$. Since $\cosh '=\sinh$ and vice versa, Bob and
+Alice's tangent vectors at time $t$ are both
+$v(t)=(\sinh (t),\cosh (t))$.
+
+In the following diagram, the red vector is tangent to Bob's
+trajectory at the point $(\sqrt{2},1)$. The dashed blue line is Bob's
+orthogonal spacelike hypersurface when he is located at
+$(\sqrt{2},1)$, and the dashed green line is Alice's orthogonal
+spacelike hypersurface when she is located at $(\sqrt{2}+1,1)$.
 
 \bigskip \noindent \begin{tikzpicture}
     \begin{axis}[
@@ -65,41 +74,45 @@ trajectory at the point $(\sqrt{2},1)$.
     \end{axis}
   \end{tikzpicture}
 
-  \bigskip \noindent At each time (in the lab frame, or
-  equivalently, according to the amount of elapsed proper time), Alice
-  and Bob will have the same tangent vector, and so the same foliation
-  into spatial hyperplanes. However, Alice and Bob will be located on
-  different timeslices in this foliation.
+  \bigskip \noindent Since Alice and Bob have the same tangent vector
+  at time $t$, they also have the same foliation into orthogonal
+  (spatial) hyperplanes. However, for all $t>0$, Alice and Bob are
+  located on different timeslices of the relevant foliation. For
+  example, Bob reaches coordinate $(\sqrt{2},1)$ in the lab frame at
+  the same time that Alice reaches coordinate
+  $(1+\sqrt{2},1)$. [Alice's trajectory results from translating Bob's
+  trajectory by the vector $\vecc{b(0)a(0)}$.]  At this time, their
+  common foliation consists of lines with slope $1/\sqrt{2}$, but Bob
+  lies on the line that has $y$-intercept $0$, while Alice lies on the
+  line that has $y$-intercept $-1/\sqrt{2}$.
 
-For example, Bob reaches coordinate $(\sqrt{2},1)$ in the lab frame at
-the same time that Alice reaches coordinate $(1+\sqrt{2},1)$. [In
-fact, Alice's trajectory is just a translation by one unit to the
-right --- in the lab frame --- of Bob's trajectory.] Their common
-foliation consists of lines with slope $1/\sqrt{2}$. However, Bob lies
-on the line that has $y$-intercept $0$ while Alice lies on the line
-that has $y$-intercept $-1/\sqrt{2}$.
-
-\begin{fact} The spacetime distance between Alice and Bob does not
-  change. To be more precise, if $a(t)$ represents Alice's position at
-  time $t$ and $b(t)$ represents Bob's position at time $t$, then
-  $d(a(t),b(t))=1$ for all $t\in\mathbb{R}^+$. \end{fact}
+  \begin{fact} The spacetime distance between Alice and Bob does not
+    change. To be more precise, if $a(t)$ represents Alice's position
+    at time $t$ and $b(t)$ represents Bob's position at time $t$, then
+    $\vecc{b(t)a(t)}$ is a spacelike vector and
+    $\| \vecc{b(t)a(t)} \|=1$. \end{fact}
 
 This follows directly from the fact that Alice's trajectory is simply
 a constant shift of Bob's trajectory.
 
 \begin{fact} The point $(1,0)=b(0)$ lies on Alice's simultaneity
-  surface at all times. What's more, $\vecc{b(0)a(t)}$ is spacelike,
-  and $\| \vecc{b(0)a(t)}\| =1$ for all $t\in\mathbb{R}^+$. \end{fact}
+  surface for all $t\in\mathbb{R}^+$. What's more, $\vecc{b(0)a(t)}$
+  is spacelike, and $\| \vecc{b(0)a(t)}\| =1$ for all
+  $t\in\mathbb{R}^+$. \end{fact}
 
-\begin{proof} Note that the hyperbola $\{ (x,t):x^2-t^2=1\}$ consists of points
-  that are Minkowski distance $1$ from $(0,0)$. Hence the hyperbola
-  $\{ (x,t):(x-1)^2-t^2=1\}$ consists of points that are distance $1$
-  from $(1,0)$. 
+\begin{proof} The hyperbola
+  $\{ (\cosh (t),\sinh(t)):t\in\mathbb{R} \}$ consists of points that
+  are Minkowski distance $1$ from $(0,0)$. Hence the hyperbola
+  $\{ (\cosh (t)+1,\sinh (t)):t\in\mathbb{R}\}$ consists of points
+  that are Minkowski distance $1$ from $(1,0)$.
 \end{proof}
 
 
 \begin{question} What is the orthogonal (temporal) distance between
   Alice and Bob's hypersurfaces at time $t$? \end{question}
+
+\begin{question} What's does Alice's motion look like to Bob? What
+  does Bob's motion look like to Alice? \end{question}
   
 \end{document}
 
