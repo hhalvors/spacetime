@@ -18,14 +18,17 @@
 
 \maketitle
 
-We assume that Alice (green) and Bob (blue) receive the instruction to
-accelerate at the same time (in what was originally their common
-reference frame). Bob's trajectory is given by
-\[ b(t) \: = \: (\cosh (t),\sinh (t)) , \] and Alice's trajectory is given by
+We assume that Alice (leading) and Bob (trailing) receive the
+instruction to accelerate at the same time (in what was originally
+their common reference frame). Bob's trajectory (blue) is given by
+\[ b(t) \: = \: (\cosh (t),\sinh (t)) , \] and Alice's trajectory
+(green) is given by
 \[ a(t) \: = \: (\cosh (t)+1,\sinh (t)) ,\] for
-$t\in\mathbb{R}^+$. Since $\cosh '=\sinh$ and vice versa, Bob and
-Alice's tangent vectors at time $t$ are both
-$v(t)=(\sinh (t),\cosh (t))$.
+$t\in\mathbb{R}^+$. Since $b(t)=(1,0)+a(t)$, we have $b'(t)=a'(t)$,
+where \[ a'(t) \: = \: (\sinh (t),\cosh(t)) ,\] and
+\[ a''(t) \: = \: (\cosh (t),\sinh (t)) .\] In particular,
+\[ \| a''(t) \|^2 = \sinh ^2 (t)-\cosh ^2(t) = 1 ,\] for all $t$,
+i.e.\ Alice and Bob have constant acceleration.
 
 In the following diagram, the red vector is tangent to Bob's
 trajectory at the point $(\sqrt{2},1)$. The dashed blue line is Bob's
@@ -74,9 +77,9 @@ spacelike hypersurface when she is located at $(\sqrt{2}+1,1)$.
     \end{axis}
   \end{tikzpicture}
 
-  \bigskip \noindent Since Alice and Bob have the same tangent vector
-  at time $t$, they also have the same foliation into orthogonal
-  (spatial) hyperplanes. However, for all $t>0$, Alice and Bob are
+  \bigskip \noindent Each each time $t$, Alice and Bob have the same
+  tangent vector, and so they foliate Minkowski spacetime into the
+  same family of spatial hypersurfaces. However, Alice and Bob are
   located on different timeslices of the relevant foliation. For
   example, Bob reaches coordinate $(\sqrt{2},1)$ in the lab frame at
   the same time that Alice reaches coordinate
@@ -109,11 +112,19 @@ a constant shift of Bob's trajectory.
 
 
 \begin{question} What is the orthogonal (temporal) distance between
-  Alice and Bob's hypersurfaces at time $t$? \end{question}
+  Alice and Bob's hypersurfaces at time $t$? Conjecture: it is the
+  same as the length of the tangent vector $v(t)$. To see this, just
+  do the pythagorean theorem with the triangle where $v(t)$ is the
+  hypotenuse. \end{question}
 
 \begin{question} What's does Alice's motion look like to Bob? What
   does Bob's motion look like to Alice? \end{question}
-  
+
+\begin{question} What is the distance, in Bob's frame, between Bob and
+  Alice? \end{question}
+
+\begin{question} Show that $\| a'(t)\|$ is bounded in
+  length. \end{question}   
 \end{document}
 
 
