@@ -5,6 +5,11 @@
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
 
+%% to do: bibliography
+\usepackage{doi}
+\usepackage[backend=biber,natbib=true,style=authoryear]{biblatex}
+\addbibresource{str.bib}
+
 \usepackage{amsfonts}
 \usepackage{amsthm}
 \theoremstyle{definition}
@@ -16,6 +21,8 @@
 
 \begin{document}
 
+%% don't bury the lede: "the string" is ambiguous!
+
 \maketitle
 
 TO DO:
@@ -25,17 +32,57 @@ TO DO:
 \item What is Alice's velocity relative to Bob?   
 \end{itemize}
 
+\section{Introduction}
+
+In his famous article ``How to teach special relativity'', John Bell
+\citeyearpar{bell} claims that a certain physical event $E$ occurs in
+a certain scenario. He then goes on to argue that the occurence of
+this event has some rather interesting implications for the
+interpretation of special relativity. Over the past few decades,
+several philosophers have cited Bell's article, often in support of
+the claim that special relativity is, strictly speaking, false, or at
+least incomplete, i.e.\ just a principle theory in wait of a
+constructive underpinning \citep[see][]{brown1999,brown2004}.
+
+Here is Bell's description of the relevant scenario.
+\begin{quote} Three small spaceships, A, B, and C, drift freely in a
+  region of space remote from other matter, without rotation and
+  without relative motion, with B and C equidistant from A (Fig. 1).
+  On reception of a signal from A the motors of B and C are ignited
+  and they accelerate gently (Fig. 2).  Let ships B and C be
+  identical, and have identical acceleration programmes. Then (as
+  reckoned by an observer in A) they will have at every moment the
+  same velocity, and so remain displaced one from the other by a fixed
+  distance. Suppose that a fragile thread is tied initially between
+  projections from B and C (Fig. 3). If it is just long enough to span
+  the required distance initially, then as the rockets speed up, it
+  will become too short, because of its need to Fitzgerald contract,
+  and must finally break. \end{quote} It seems that most people agree
+with Bell's claim that the thread will break in this scenario ---
+despite disagreeing about what it means for special relativity. My
+primary claim is that, in this scenario, there is no physical object
+that could be called ``the thread''. Indeed, in special relativity, no
+extended physical object can undergo constant acceleration.
+
+\section{Preliminaries}
+
 We assume that Alice (leading) and Bob (trailing) receive the
 instruction to accelerate at the same time (in what was originally
 their common reference frame). Bob's trajectory (blue) is given by
-\[ b(t) \: = \: (\cosh (t),\sinh (t)) , \] and Alice's trajectory
+\[ b(t) \: = \: (\sinh(t),\cosh(t) ) , \]
+in the coordinates of the laboratory frame. Here we use the coordinate
+convention $(\mathsf{time},\mathsf{space})$. Similarly, Alice's trajectory
 (green) is given by
-\[ a(t) \: = \: (\cosh (t)+1,\sinh (t)) ,\] for
-$t\in\mathbb{R}^+$. Since $b(t)=(1,0)+a(t)$, we have $b'(t)=a'(t)$,
-where \[ a'(t) \: = \: (\sinh (t),\cosh(t)) ,\] and
+\[ a(t) \: = \: (\sinh (t),\cosh (t)+1) .\] Since $b(t)=(0,1)+a(t)$,
+we have $b'(t)=a'(t)$, where \[ a'(t) \: = \: (\sinh (t),\cosh(t)) ,\]
+and
 \[ a''(t) \: = \: (\cosh (t),\sinh (t)) .\] In particular,
 \[ \| a''(t) \|^2 = \sinh ^2 (t)-\cosh ^2(t) = 1 ,\] for all $t$,
-i.e.\ Alice and Bob have constant acceleration.
+i.e.\ the magnitude of Alice and Bob's accelerations are
+constant. Similarly, the magnitude of Alice and Bob's proper
+velocities are constant. In contrast, Alice's velocity in the
+laboratory frame is $v(s)=\sinh (s)/\cosh (s)$ which is zero at $s=0$
+while $\lim _{s\to\infty }v(s)=1$.
 
 In the following diagram, the red vector is tangent to Bob's
 trajectory at the point $(\sqrt{2},1)$. The dashed blue line is Bob's
@@ -105,6 +152,18 @@ spacelike hypersurface when she is located at $(\sqrt{2}+1,1)$.
 This follows directly from the fact that Alice's trajectory is simply
 a constant shift of Bob's trajectory.
 
+\section{Rindler coordinates}
+
+Assume again that Bob's trajectory is given by
+$b(t)=(\sinh (t),\cosh (t))$ in the laboratory frame. We have seen
+that at each time $t\in\mathbb{R}$, Bob's simultaneity surface is a
+line that passes through the origin $(0,0)$. Bob is always spacelike
+to the origin, and the spacetime distance of the segment between
+$(0,0)$ and $(\sinh(t) ,\cosh (t))$ is always of length $1$. In fact,
+the line connecting $(0,0)$ to $(\sinh (t),\cosh (t))$ also passes
+through the curve $t\mapsto \alpha (\sinh (t),\cosh (t))$, and the
+distance along this line to the curve is $\alpha$.
+
 \begin{fact} The point $(1,0)=b(0)$ lies on Alice's simultaneity
   surface for all $t\in\mathbb{R}^+$. What's more, $\vecc{b(0)a(t)}$
   is spacelike, and $\| \vecc{b(0)a(t)}\| =1$ for all
@@ -131,8 +190,14 @@ a constant shift of Bob's trajectory.
   Alice? \end{question}
 
 \begin{question} Show that $\| a'(t)\|$ is bounded in
-  length. \end{question}   
+  length. \end{question}
+
+\printbibliography 
+
+
 \end{document}
+
+
 
 
 %%% Local Variables:
