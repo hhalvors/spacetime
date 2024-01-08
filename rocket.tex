@@ -1,5 +1,5 @@
 \documentclass[tikz,border=10pt,fleqn]{article}
-\title{Bell's spaceship paradox}
+\title{Broken Strings and Absolute Time}
 \author{Hans Halvorson}
 \date{\today}
 \usepackage{pgfplots}
@@ -23,6 +23,16 @@
 
 %% don't bury the lede: "the string" is ambiguous!
 
+%% Born rigidity
+
+%% what do Alice and Bob "see"? (Perhaps draw some pictures with their
+%% lightcones being dragged along.)
+
+%% Rindler horizon
+%% isn't there a situation in which Bob falls outside of Alice's
+%% horizon? Yes, I think if Bob starts out at distance more than k,
+%% where k is the acceleration
+
 \maketitle
 
 TO DO:
@@ -36,13 +46,20 @@ TO DO:
 
 In his famous article ``How to teach special relativity'', John Bell
 \citeyearpar{bell} claims that a certain physical event $E$ occurs in
-a certain scenario. He then goes on to argue that the occurence of
-this event has some rather interesting implications for the
-interpretation of special relativity. Over the past few decades,
-several philosophers have cited Bell's article, often in support of
-the claim that special relativity is, strictly speaking, false, or at
-least incomplete, i.e.\ just a principle theory in wait of a
-constructive underpinning \citep[see][]{brown1999,brown2004}.
+a certain scenario.\footnote{As several people have pointed out,
+  Bell's thought experiment had already been suggested by a few others
+  before him, most notably \citet{dewan1959}. In fact, from the
+  earliest days of special relativity it was recognized that there are
+  some difficulties with describing extended objects in accelerated
+  motion.} He then goes on to argue that the occurence of this event
+has some rather interesting implications for the interpretation of the
+special theory of relativity. Over the past few decades, several
+philosophers have invoked Bell's authority in support of the claim
+that special relativity is, strictly speaking, false, or at least
+incomplete, i.e.\ just a principle theory in wait of a constructive
+underpinning \citep[see][]{brown1999,brown2004}. Or perhaps that is
+not really what these philosophers are claiming. It is not completely
+clear to me what the upshot of Bell's article is supposed to be.
 
 Here is Bell's description of the relevant scenario.
 \begin{quote} Three small spaceships, A, B, and C, drift freely in a
@@ -57,12 +74,21 @@ Here is Bell's description of the relevant scenario.
   projections from B and C (Fig. 3). If it is just long enough to span
   the required distance initially, then as the rockets speed up, it
   will become too short, because of its need to Fitzgerald contract,
-  and must finally break. \end{quote} It seems that most people agree
-with Bell's claim that the thread will break in this scenario ---
-despite disagreeing about what it means for special relativity. My
-primary claim is that, in this scenario, there is no physical object
-that could be called ``the thread''. Indeed, in special relativity, no
-extended physical object can undergo constant acceleration.
+  and must finally break. \end{quote} Most commentators on this
+thought experiment agree with Bell's claim that the thread will break
+--- despite there being strong disagreement about what the phenomenon
+entails vis-a-vis the interpretation of special relativity. My primary
+claim about the physics is:
+\begin{quote} In the two-rocket scenario, there is no physical object
+  that could be called ``the thread''. \end{quote} In fact, quite
+generally, no extended physical object can have the feature that all
+of its parts undergo the same constant acceleration. If part $B$ and
+part $C$ are spacelike separated from each other, and if both are
+accelerated via the same vector $\vec{a}$, then their internal clocks
+can no longer by syncronized, and there is no single thing that could
+be called the mereological sum of $B$ and $C$. (These loose claims
+correspond to precise mathematical facts that will be illustrated
+later.)
 
 \section{Preliminaries}
 
@@ -152,6 +178,62 @@ spacelike hypersurface when she is located at $(\sqrt{2}+1,1)$.
 This follows directly from the fact that Alice's trajectory is simply
 a constant shift of Bob's trajectory.
 
+%% TO DO: a diagram that shows the evolution of Alice and Bob's
+%% lightcones
+
+\newcommand{\drawcone}[2]{% takes two arguments: a and b
+  \def\a{#1} % x-coordinate of the vertex
+  \def\b{#2} % y-coordinate of the vertex
+  % Draw and fill the cone
+  \fill[gray, opacity=0.3] (\a,\b) -- (\a-10,\b-10) -- (\a+10,\b-10) -- cycle;
+}
+
+\bigskip \noindent \begin{tikzpicture}
+    \begin{axis}[
+        axis lines=middle,
+        xlabel={$x$},
+        ylabel={$t$},
+        xlabel style={font=\tiny}, % Makes the x-axis label smaller
+        ylabel style={font=\tiny}, 
+        xmin=-1, xmax=4,
+        ymin=-1, ymax=4,
+        grid=both,
+        grid style={line width=.1pt, draw=gray!10},
+        major grid style={line width=.2pt,draw=gray!50},
+        axis equal image,
+        legend pos=north west,
+        tick label style={font=\tiny}, 
+    ]
+    % Original hyperbola (positive y values only)
+    \addplot[domain=1:4, samples=100, smooth, blue] {sqrt(x^2 - 1)};
+
+    % Shifted hyperbola (positive y values only)
+    \addplot[domain=2:4, samples=100, smooth, green] {sqrt((x-1)^2 -
+      1)};
+
+  \def\t{1.5} % You can change this value
+
+  % Calculate cosh(t) and sinh(t)
+  \pgfmathsetmacro\cosht{cosh(\t)}
+  \pgfmathsetmacro\sinht{sinh(\t)}
+
+  % Calculate the constant k for the line equation y = x + k
+  \pgfmathsetmacro\k{\sinht - \cosht}
+  \pgfmathsetmacro\h{\sinht + \cosht}
+
+  % Define starting point (choose an appropriate x-coordinate)
+  \def\startX{-2} % You can change this value
+
+  % Define ending point (cosh(t), sinh(t))
+  \def\endX{\cosht}
+  \def\endY{\sinht}
+
+  \drawcone{1+\cosht}{\sinht} % Example usage
+
+
+    \end{axis}
+  \end{tikzpicture}
+
 \section{Rindler coordinates}
 
 Assume again that Bob's trajectory is given by
@@ -163,6 +245,54 @@ $(0,0)$ and $(\sinh(t) ,\cosh (t))$ is always of length $1$. In fact,
 the line connecting $(0,0)$ to $(\sinh (t),\cosh (t))$ also passes
 through the curve $t\mapsto \alpha (\sinh (t),\cosh (t))$, and the
 distance along this line to the curve is $\alpha$.
+
+\begin{figure}[ht]
+\begin{tikzpicture}[scale=1]
+
+    % Draw axes
+    \draw[->] (0,0) -- (8,0) node[right] {$x$};
+    \draw[->] (0,-8) -- (0,8) node[above] {$ct$};
+
+    % Draw hyperbolic curves (Rindler observers' worldlines)
+          \draw[blue,thick,domain=-2.75:2.75, smooth, variable=\y] plot ({cosh(\y)}, {sinh(\y)});        
+
+          \draw[gray,domain=-2:2, smooth, variable=\y] plot ({2*cosh(\y)}, {2*sinh(\y)});
+
+          \draw[gray,domain=-1.5:1.5, smooth, variable=\y] plot ({3*cosh(\y)}, {3*sinh(\y)});
+
+         \draw[gray,domain=-1.2:1.2, smooth, variable=\y] plot ({4*cosh(\y)}, {4*sinh(\y)}); 
+
+         \draw[green,thick,domain=-2.6:2.6, smooth, variable=\y] plot ({1+cosh(\y)}, {sinh(\y)});    
+
+      \draw[gray] plot[domain=0:8] (\x, {0.5*\x}) node[anchor=south west] {};
+
+            \draw[gray] plot[domain=0:8] (\x, {0.25*\x}) node[anchor=south west] {};
+
+            \draw[gray] plot[domain=0:8] (\x, {0.75*\x}) node[anchor=south west] {};
+
+                \draw[gray] plot[domain=0:8] (\x, {0.9*\x})
+                node[anchor=south west] {};
+                
+
+\end{tikzpicture}
+\caption{The blue hyperbola is the set of all points that are
+  spacelike to the origin and at distance $1$. The green hyperbola is
+  the shift of the blue hyperbola one unit to the right. The gray
+  hyperbolas are lines of constant distance $n$ to the origin. As is
+  clear from the picture, the points on the green hyperbola are
+  increasingly distant from the origin. The horizontal gray lines
+  correspond to amount of elapsed time along each of the hyperbolas of
+  constant distance.}
+\end{figure}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+
+
+\section{Conclusion}
 
 \begin{fact} The point $(1,0)=b(0)$ lies on Alice's simultaneity
   surface for all $t\in\mathbb{R}^+$. What's more, $\vecc{b(0)a(t)}$
